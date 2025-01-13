@@ -1,0 +1,71 @@
+#include <iostream>
+// #include <bits/stdc++.h>
+using namespace std;
+
+
+void heapify(int A[], int n, int i) { // the order matters for each of the int values, such as int n being called when intailizied under the void function
+    int left = 2 * i + 1;
+    int right = 2 * i + 2; 
+    int max_number = i;
+
+    if (left < n && A[left] > A[max_number]) { 
+        max_number = left; 
+        // cout << "the current max number on the left: " << max_number << endl;
+        
+    }
+
+    if (right < n && A[right] > A[max_number]) {       
+        max_number = right;
+        // cout << "the current max number on the right: " << max_number << endl;
+    }
+
+    if (max_number != i) {
+        swap(A[i], A[max_number]);          
+        heapify(A, n, max_number);
+        // cout << "the current max number swap: " << max_number << endl;
+    }
+}
+
+
+
+void heapSort(int A[], int n) {
+    for (int i = (n / 2) - 1; i >= 0; i--) {
+        heapify(A, n, i);
+        // cout << A[i] << endl;
+    }
+    // cout << endl;
+    // heapify(A, n, max_number);
+    for (int i = n - 1; i > 0; i--) {
+        swap(A[0], A[i]);
+        heapify(A, i, 0);
+        // cout << A[i] << endl;
+    }
+    
+}
+
+// then include the int main(), which is your driver program
+int main() {
+    
+    // intialized values for n
+    int n;
+    cin >> n;
+                            
+    // intialized the sequence for the array
+    int* A = new int[n]; 
+
+    for (int i = 0; i < n; i++) 
+    {
+        cin >> A[i];                
+    }
+    // one for loop for the elements to go in the A array
+    //heapSort(A,n);
+    //one for loop for the elements of the A array to be printed out cout << A[i] << ";"
+
+    heapSort(A, n);               
+
+    for (int i = 0; i < n; i++) {
+        cout << A[i] << ";";
+    }                        
+
+    return 0;
+}
