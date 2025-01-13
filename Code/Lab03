@@ -1,0 +1,88 @@
+#include <iostream>
+#define INF -2147483647
+using namespace std;
+
+
+int maxCross(int A[], int low, int mid, int high) {
+    int left_sum = -2147483647;
+    int sum_total = 0;
+    // int leftSum = INT_MIN;
+
+    for (int i = mid; i >= low; --i) { // shows the "mid downto low" code on pg.71
+        sum_total = sum_total + A[i];
+        if (sum_total > left_sum) {
+            left_sum = sum_total;
+            // int max_left = i;
+        }
+    }
+
+    int right_sum = -2147483647;
+    sum_total = 0; // try to see if the variable name needs to be changed
+
+    for (int j = (mid + 1); j <= high; j++) {
+        sum_total = sum_total + A[j];
+        if (sum_total > right_sum) {
+            right_sum = sum_total;// this is the exchange of values if the sum_total is already bigger than the right sum that is evaluated here
+            // int max_right = j;
+        }
+    }
+    return left_sum + right_sum; // check later if max_left and max_right are needed here to establish which values were largest on the left and right side
+}
+
+// now the code for the finding the maximum subarray from pg 72 which is the divide and conquer main algorthim
+
+int maximumSub(int A[], int low, int high) { // the int A[] was intially causing problem (segmentation fault) by which I removed "low" and "high" on line 40 to see what happens
+    int left_Sum;
+    int right_Sum;
+    int cross_Sum;
+
+    if (high == low) {
+        return (A[low]);
+    }
+    else { 
+        int mid = (low + high) / 2; 
+        left_Sum = maximumSub(A, low, mid);
+        right_Sum = maximumSub(A, mid + 1, high);
+        cross_Sum = maxCross(A, low, mid, high);
+
+        if (left_Sum >= right_Sum && left_Sum >= cross_Sum) {
+            return left_Sum; // returns both left low and left high
+        }
+        else if (right_Sum >= left_Sum && right_Sum >= cross_Sum) {
+            return right_Sum; // returns both right left and right high
+        }
+        else {
+            return cross_Sum;
+        }
+    }
+
+    return 0;
+        
+}
+
+// main driver function
+
+int main() {
+    
+    // intialized values for n
+
+    int n;
+    cin >> n;
+
+    // intialized the sequence for the array
+    int array[n];
+    for (int i = 0; i < n; i++) 
+    {
+        int list;
+        cin >> list;
+        array[i] = list;
+    }
+
+    int max_addition;
+
+    max_addition = maximumSub(array, 0, n-1);
+
+    cout << max_addition;
+
+    return 0;
+}
