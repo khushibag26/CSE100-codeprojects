@@ -1,4 +1,4 @@
-# CSE100-codeprojects
+# CSE100-codeprojects (class projects)
 - Lab00
 - Lab01
 - Lab02
