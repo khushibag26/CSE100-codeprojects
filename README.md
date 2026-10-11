@@ -1,14 +1,15 @@
 # CSE100-codeprojects (class projects)
-- Lab00
-- Lab01
-- Lab02
-- Lab03
-- Lab04
-- Lab05
-- Lab06
-- Lab07
-- Lab08
-- Lab09
-- Lab10
-- Lab11
-- Lab12
+- Lab00: Find Max and Min
+- Lab01: Insertion Sort
+- Lab02: Merge Sort
+- Lab03: Max Subarray with Divide and Conquer Method
+- Lab04: Heap Sort
+- Lab04_part2: Quick Sort
+- Lab05: Radix Sort
+- Lab06: Hash Table
+- Lab07: Rod Cutting Problem
+- Lab08: Matrix Chain Multiplication
+- Lab09: Huffman Codes
+- Lab10: Strongly Connected Components (SCC)
+- Lab11: Minimum Spanning Tree with Prim's Algorithm
+- Lab12: Bellman-Ford Algorithm for Negative Cycles
